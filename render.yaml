@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: cobalt-pribadi
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /
+    envVars:
+      # GANTI dengan URL service-mu setelah dibuat di Render
+      # (mis. https://cobalt-pribadi.onrender.com/ — harus diakhiri /)
+      - key: API_URL
+        value: https://cobalt-pribadi.onrender.com/
+      # Kunci Turnstile + JWT_SECRET JANGAN taruh di sini (file ini masuk git).
+      # Isi manual di dashboard Render → service → Environment (sebagai Secret):
+      #   TURNSTILE_SITEKEY, TURNSTILE_SECRET, JWT_SECRET
+      # Opsional untuk YouTube yang kena bot-check: YOUTUBE_COOKIES (Secret)
+      #   = ISI file cookies.json format cobalt, mis. {"youtube":["a=b; c=d"]}
+      #   Cara dapat: ekstensi "Get cookies.txt LOCALLY" (fork Cobalt) di browser
+      #   yang login YouTube → export sebagai cookies.json → tempel isinya.
